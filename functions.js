@@ -9,8 +9,9 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 function sayHello(name){
-    return "hello" + name;
+    return "Hello , " + name;
 }
+console.log(sayHello(name));
 /**
  * TODO:
  * Call the function 'sayHello' and pass your name as a string literal argument.
@@ -18,6 +19,8 @@ function sayHello(name){
  *
  * console.log 'helloMessage' to check your work
  **/
+
+
 sayHello("Addie");
 var helloMessage = sayHello("Addie");
 
@@ -58,8 +61,8 @@ var random = Math.floor((Math.random() * 3) + 1);
 function isTwo(number) {
     return (number === 2);
 }
-let sum = isTwo(random);
-console.log("Sum:", sum);
+
+console.log(isTwo(random));
 
 
 
@@ -93,15 +96,13 @@ console.log(calculateTip(.20, 200));
  * then display the dollar amount they should tip
  **/
 
+    var billTotal = prompt("What was your bill total?");
 
+    var tipPercentage = prompt("How much would you like to tip in a whole amount?");
 
+    tipPercentage = tipPercentage / 100;
 
-    var billTotal = prompt("What was your bill total?") + calculateTip;
-    var tipPercentage = prompt("How much would you like to tip?") + calculateTip;
-    alert("You should tip" + calculateTip(.2, 200));
-
-
-
+    alert("Thanks! - You will be tipping : $" + calculateTip(billTotal, tipPercentage));
 
 
 /**
@@ -119,12 +120,11 @@ console.log(calculateTip(.20, 200));
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 
-function applyDiscount(x , y) {
-    return x * y;
+function applyDiscount(originalPrice, discountPercent) {
+    return originalPrice - (originalPrice * discountPercent);
 
-    var originalPrice = 25;
-    var discountPercent = .1;
-    applyDiscount(originalPrice, discountPercent)
+
+
 
 }
 
