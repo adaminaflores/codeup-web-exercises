@@ -19,7 +19,7 @@ var myDog = {
     breed: "Pembroke Welsh Corgi" //property
 }
 
-console.log(myDog);myDog
+console.log(myDog);
 
 //.log-ing the above gets us the object 'printed' or 'viewed' in the console where we can click into the object to see its shape [properties]
 
