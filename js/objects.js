@@ -119,15 +119,15 @@
 
     ];
 
-console.log(books);
-
-console.log(books[b].title);
-    console.log(books[b].author.firstName);
-        console.log(books[b].author.lastName);
-
-
-for(var b = 0; b < books.length; b++){
+    for(var b = 0; b < books.length; b++){
     console.log("Here is some information on each book : " + books[b].bookNumber.title.author);
+
+
+    console.log(books);
+
+    console.log(books[b].title);
+    console.log(books[b].author.firstName);
+    console.log(books[b].author.lastName);
 }
 
 
@@ -182,4 +182,5 @@ var bookLibrary = [books, bookInfo];
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
 
