@@ -6,7 +6,7 @@
 </head>
 <body>
 <main>
-    <h1>Register With Us!</h1>
+    <h1>Veridian Dynamics Registration Form</h1>
 </main>
 <br>
 <section>
@@ -20,31 +20,43 @@
     <input id="password" name="password" type="password">
     <br>
 
-    <input type="submit">
+
 </form>
 </section>
 <br>
 <section>
-    <textarea name="bio">Tell Us About Yourself</textarea>
+    <textarea name="bio" cols="50" rows="20" placeholder ="Tell Us About Yourself"></textarea>
 </section>
 <br>
 <section>
     <h2>How did you hear about us?</h2>
+    <br>
+    <div>
     Billboard <input type="radio" name="quiz_question_1" value="a"><br>
+    </div>
+    <div>
     Radio Advertisement <input type="radio" name="quiz_question_1" value="b"><br>
+    </div>
+    <div>
     Internet Advertisement <input type="radio" name="quiz_question_1" value="c"><br>
+    </div>
+    <div>
     Other <input type="radio" name="quiz_question_1" value="d"><br>
+    </div>
 
 </section>
 <br>
 <section>
-    <h2>What browser are you using?</h2>
-    <select name="browser_preference">
+    <h5>What browser are you using?</h5>
+    <select name="browser_preference" id="browser_preference-select">
+        <option value="" disabled selected>--Please Choose an Option--</option>
         <option value="chrome">Chrome</option>
         <option value="firefox">FireFox</option>
         <option value="safari">Safari</option>
     </select>
+    <br>
 </section>
-
+<br>
+        <input type="submit">
 </body>
 </html>
