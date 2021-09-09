@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+nav {
+    background: darkgrey;
+}
+ul {
+    list-style: none;
+    padding: 0em;
+    margin: 0;
+    display: flex;
+}
+nav a {
+    text-decoration: none;
+    color: black;
+    font-family: 'work-sans',sans-serif;
+    display: inline-block;
+    padding: 1em;
+}
+nav a:hover {
+    background: blue;
+
+}
+nav ul li:nth-child(5){
+    position: absolute;
+    top: -50px;
+    right: 650px;
+    font-size: 3em;
+     margin-left: 5em;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    justify-content: center;
+
+
+
+
+}
+
+nav ul li:nth-child(6){
+    margin-left: auto;
+
+}
