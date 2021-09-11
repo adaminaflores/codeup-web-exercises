@@ -144,6 +144,7 @@ li{
 
 
 
+
 }
 .sub-section{
     display:inline-block;
@@ -153,6 +154,11 @@ li{
     justify-content: space-evenly;
     padding-left: 45em;
     padding-bottom: 10em;
+    position:absolute;
+    bottom: -275px;
+
+
+
 
 
 
@@ -164,7 +170,14 @@ li{
 #social-media-links{
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+
 
 }
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 350px;
 
+}
