@@ -2,14 +2,55 @@ header {
    text-align: center;
 }
 h1{
-    color: darkblue;
+    color: cornflowerblue;
     text-decoration: overline;
 }
 h2.fancy-header{
-    color: pink;
+    color: cornflowerblue;
     text-decoration: underline;
 }
 body {
     background-color: skyblue;
-    background-image:
+    background-image: url(https://s11.favim.com/orig/7/795/7958/79582/pastel-blue-light-blue-aesthetic-Favim.com-7958235.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Rampart One', cursive;
+}
+li{
+    color: deeppink;
+    list-style: square;
+}
+th{
+    color: cadetblue;
+    text-decoration: underline;
+    font-size: 20px;
+
+}
+td{
+    color: darkslateblue;
+}
+em, b{
+    color: deeppink;
+}
+p{
+    color: cornflowerblue;
+}
+/* unvisited link (:link) */
+a:link {
+    color: mediumpurple;
+}
+
+/* visited link (:visited) */
+a:visited {
+    color: paleturquoise;
+}
+
+/* mouse hover over link (:hover) */
+a:hover {
+    color: lightpink;
+}
+
+/* active/selected link (:active) */
+a:active {
+    color: midnightblue;
 }
