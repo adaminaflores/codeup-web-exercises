@@ -14,6 +14,22 @@ while(i < 100000) {
 //"5 cones sold" if there are enough cones
 //"Cannot sell you 6 cones I only have 3" if there are not enough
 //"Yay! I sold them all!" if there are no more cones
-var cones = 60;
-var customers = 4;
+function iceCreamSeller(){
+    var allCones= Math.floor(Math.random() * 51) + 50;
+    var customerCones;
+
+    do{
+        customerCones = +prompt("Hi! there are" + allCones + "cones left. How many ice cream cones would you like?");
+        if(isNaN(customerCones) || customerCones < 1) {
+            alert("Sorry, That's not a valid answer!");
+            continue;
+        }
+        if(customerCones > allCones){
+            alert("Oh no! I don't have " + customerCones + "ice cream cones, I online have " + allCones + ".");
+            continue;
+        }
+        allCones -= customerCones;
+    } while(allCones > 0);
+            alert("Yay! I sold all my Ice Cream!");
+}
 
