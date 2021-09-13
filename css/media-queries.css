@@ -127,7 +127,7 @@ li{
     justify-content: center;
     width: 890px;
     height: 385px;
-    padding: 1em;
+    padding-left: 10em;
     margin: 1em;
 
 
@@ -137,10 +137,9 @@ li{
     display:inline-block;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-evenly;
-    padding-right: 20em;
-
+    padding-right: 50em;
+    padding-top: 2em;
 
 
 
@@ -153,9 +152,10 @@ li{
     flex-wrap: wrap-reverse;
     justify-content: space-evenly;
     padding-left: 45em;
+    padding-right: 10em;
     padding-bottom: 10em;
     position:absolute;
-    bottom: -275px;
+    bottom: -135px;
 
 
 
