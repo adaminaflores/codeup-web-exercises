@@ -25,9 +25,64 @@
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
+    <button id="btn1">Button 1</button>
+    <button id="btn2">Button 2</button>
+    <button id="btn3">Button 3</button>
+    <button id="btn4">Button 4</button>
+
+
 <script>
     (function() {
         "use strict";
+//FIRST BUTTON
+        var updateMain = function(){
+
+            var mainHeader = document.getElementById("main-header");
+
+                for(var i = 0; i < mainHeader.length; i++){
+                mainHeader[i].innerText = "JavaScript is Cool!";
+            }
+        }
+
+var btn1 = document.getElementById("btn1");
+btn1.addEventListener("click", updateMain);
+//SECOND BUTTON
+        var updateSub = function(){
+
+            var subHeader = document.getElementById("sub-header");
+            for(var i = 0; i < subHeader.length; i++){
+
+                subHeader[i].style.color = "blue";
+        }
+    }
+var btn2 = document.getElementById("btn2");
+btn2.addEventListener("click", updateSub);
+
+//THIRD BUTTON
+        var green = function(){
+
+            var listItems = document.getElementsByTagName("li");
+            for(var i = 0; i < listItems.length; i++){
+
+                listItems[i].style.color = "green";
+            }
+        }
+var btn3 = document.getElementById("btn3");
+btn3.addEventListener("click", green);
+
+//BUTTON FOUR
+   var updatePara = function(){
+
+       var paraText = document.getElementsByClassName("sub-paragraph");
+       for(var i = 0; i < paraText.length; i++){
+
+           paraText[i].innerText = "Mission Accomplished!";
+       }
+   }
+var btn4 = document.getElementById("btn4");
+btn4.addEventListener("click", updatePara);
+
+
         // TODO: Uncomment next line and get the main header element by id
         var mainHeader = document.getElementById("main-header");
         console.log(mainHeader);
@@ -43,7 +98,7 @@
 
         // TODO: Set the text color of subHeader to blue
 
-        subHeader.style["background-color"]= "blue";
+        subHeader.style.color= "blue";
 
         // TODO: Uncomment the next line and get all list items
 
@@ -70,6 +125,10 @@
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
         subParagraphs[0].innerText = "Mission Accomplished!";
+
+
+
+
     })();
 </script>
 </body>
