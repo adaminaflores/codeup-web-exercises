@@ -9,17 +9,25 @@
 
 //.click() function using jQuery
 $('#main-heading').click(function(){
-    $(this).css('background-color', 'blue');
+    $(this).css('background-color', 'green').css('font-size', '50px').css('font-weight','bold');
     });
 //.dblclick() function using jQuery
 $('p').dblclick(function(){
-    $(this).css('font-size', '18px')
+    $(this).css('font-size', '40px').css('color','blue').css('font-family','helvetica')
 });
 //.hover(handlerIn, handlerOut) function using jQuery
 $('li').hover(function(){
-    $(this).css('color','red');
+    $(this).css('color','red').css('font-size','30px');
     },
     function(){
-    $(this).css('color', 'black');
+    $(this).css('color', 'black').css('font-size','inherit');
     }
 );
+//Extra stuff for fun
+$('.paragraph').hover(function(){
+    $(this).css('font-family','italic').css('font-size','30px').css('color', 'yellow');
+},
+    function(){
+    $(this).css('font-family','inherit').css('font-size','inherit').css('color','black')
+});
+$('h1').css('padding','50px').css('margin','50px');
