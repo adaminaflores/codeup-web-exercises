@@ -31,3 +31,23 @@ $('.paragraph').hover(function(){
     $(this).css('font-family','inherit').css('font-size','inherit').css('color','black')
 });
 $('h1').css('padding','50px').css('margin','50px');
+
+//keydown
+// $('body').keydown(function(event){
+//     console.log(event.key);
+// });
+//keypress
+// $('body').keypress(function(event){
+//    console.log(event.key)
+// });
+
+var myKeys= "";
+
+$('body').keyup(function(event){
+    console.log("The key you pressed was "+ event.key);
+    myKeys += event.key;
+    console.log(myKeys);
+    if(myKeys === "quasar"){
+        alert("hey you did it!")
+    }
+});
