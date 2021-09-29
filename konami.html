@@ -37,13 +37,13 @@
     "use strict";
     var myKeys="";
     var myAudio=("audio/ES_Magical Twinkle 1 - SFX Producer.mp3")
-    $('body').css('background-color', 'pink').css('font-family','Bungee Shade', 'cursive').keyup(function(event){
+    $('body').css('background-color', 'pink').css('font-family','Bungee Shade', 'cursive').css('color','white').keyup(function(event){
         console.log(event.key);
         myKeys += event.key;
         console.log(myKeys);
         if(myKeys==="ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightab"){
             $('audio#magic')[0].play();
-            $('body').css('background-color','red');
+            $('body').css('background-color','red').css('color','black');
             swal("You did it!", "You've earned 30 extra lives!", "success");
         }
     });
