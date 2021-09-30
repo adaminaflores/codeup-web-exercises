@@ -40,20 +40,57 @@
             <dd class="invisible">Directed by Ivan Reitman (1984) </dd>
         </dl>
 
+            <h3>Four Fun Facts About Ghostbusters:</h3>
+                <ul>
+                    <li>Dan Aykroyd used his family history as inspiration</li>
+                    <li>The Marshmallow Man was actually shaving cream</li>
+                    <li>Was going to originally be called Ghost Smashers</li>
+                    <li>The ghost Slimer was made in memory of John Belushi</li>
+                </ul>
+            <h3>Four Fun Facts About Beetlejuice:</h3>
+                <ul>
+                    <li>The movie is named after the star Betelgeuse</li>
+                    <li>Sammy Davis Jr. was Tim Burton's first choice to play       Beetlejuice</li>
+                    <li>Warner Bros. wanted to change the name of the movie to House Ghost</li>
+                    <li>Beetlejuice is only in 17.5 minutes of the 92 minute movie</li>
+                </ul>
+            <h3>Fun Facts About Hocus Pocus:</h3>
+                <ul>
+                    <li>The movie was almost called Halloween House</li>
+                    <li>Real moths fly out of the mouth of the actor who played the dead guy Billy</li>
+                    <li>Leonardo DiCaprio was offered the role of Max but turned it down</li>
+                    <li>Apparently there will be sequel premiering on Disney+ that is in the works</li>
+                </ul>
+
+
+        <button class="ui-button ui-widget ui-corner-all">Click Me!</button>
 
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
 "use strict";
-
-
-    $('.invisible').css('visibility', 'hidden').toggleClass('.invisible', 'addOrRemove');
+    $(document).ready(function() {
+        $('dd').click(function(event) {
+            event.preventDefault();
+            $('.invisible').toggleClass('.invisible');
+        });
+    });
+    // $('.invisible').css('visibility', 'hidden').toggleClass('.invisible', 'addOrRemove');
     $('dt').click(function(){
         $(this).css('background-color','orange');
     });
+    $('.ui-button').click(function(){
+        $('li').last().css('background-color','yellow');
 
+        });
+    $('h3').click(function(){
+        $('li').css('font-weight','bold');
+    });
 
+    $('li').click(function(){
+        $(this).parent().first().css('color','blue');
+    });
 
 
 
