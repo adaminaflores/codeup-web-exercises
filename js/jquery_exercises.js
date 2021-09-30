@@ -8,29 +8,29 @@
 // $('h1 , li, p').css('background-color','yellow');
 
 //.click() function using jQuery
-$('#main-heading').click(function(){
-    $(this).css('background-color', 'green').css('font-size', '50px').css('font-weight','bold');
-    });
+// $('#main-heading').click(function(){
+//     $(this).css('background-color', 'green').css('font-size', '50px').css('font-weight','bold');
+//     });
 //.dblclick() function using jQuery
-$('p').dblclick(function(){
-    $(this).css('font-size', '40px').css('color','blue').css('font-family','helvetica')
-});
+// $('p').dblclick(function(){
+//     $(this).css('font-size', '40px').css('color','blue').css('font-family','helvetica')
+// });
 //.hover(handlerIn, handlerOut) function using jQuery
-$('li').hover(function(){
-    $(this).css('color','red').css('font-size','30px');
-    },
-    function(){
-    $(this).css('color', 'black').css('font-size','inherit');
-    }
-);
+// $('li').hover(function(){
+//     $(this).css('color','red').css('font-size','30px');
+//     },
+//     function(){
+//     $(this).css('color', 'black').css('font-size','inherit');
+//     }
+// );
 //Extra stuff for fun
-$('.paragraph').hover(function(){
-    $(this).css('font-family','italic').css('font-size','30px').css('color', 'yellow');
-},
-    function(){
-    $(this).css('font-family','inherit').css('font-size','inherit').css('color','black')
-});
-$('h1').css('padding','50px').css('margin','50px');
+// $('.paragraph').hover(function(){
+//     $(this).css('font-family','italic').css('font-size','30px').css('color', 'yellow');
+// },
+//     function(){
+//     $(this).css('font-family','inherit').css('font-size','inherit').css('color','black')
+// });
+// $('h1').css('padding','50px').css('margin','50px');
 
 //keydown
 // $('body').keydown(function(event){
@@ -41,13 +41,25 @@ $('h1').css('padding','50px').css('margin','50px');
 //    console.log(event.key)
 // });
 
-var myKeys= "";
+// var myKeys= "";
+//
+// $('body').keyup(function(event){
+//     console.log("The key you pressed was "+ event.key);
+//     myKeys += event.key;
+//     console.log(myKeys);
+//     if(myKeys === "quasar"){
+//         alert("hey you did it!")
+//     }
+// });
 
-$('body').keyup(function(event){
-    console.log("The key you pressed was "+ event.key);
-    myKeys += event.key;
-    console.log(myKeys);
-    if(myKeys === "quasar"){
-        alert("hey you did it!")
+//this will highlight the odd indexes
+$('li').each(function(index){
+    if(index % 2 !== 0){
+        $(this).css('background-color','red');
     }
 });
+//this will highlight the first li item
+$('li').first().css('background-color','blue');
+
+//this will highlight the last list item
+$('li').last().css('background-color','yellow');

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+</head>
+<body>
+        <p>Halloween Movies to Watch:</p>
+
+        <dl>
+            <dt>Rocky Horror Picture Show</dt>
+            <dd class="invisible">Directed by Jim Sharman (1975)</dd>
+
+            <dt>Halloween</dt>
+            <dd class="invisible">Directed by John Carpenter (1978)</dd>
+
+            <dt>Mars Attack</dt>
+            <dd class="invisible">Directed by Tim Burton (1996)</dd>
+
+            <dt>The Exorcist</dt>
+            <dd class="invisible">Directed by William Friedkin (1973)</dd>
+
+            <dt>It</dt>
+            <dd class="invisible">Directed by Tommy Lee Wallace (1990)</dd>
+
+            <dt>Hocus Pocus</dt>
+            <dd class="invisible">Directed by Kenny Ortega (1993)</dd>
+
+            <dt>Friday the 13th</dt>
+            <dd class="invisible">Directed by Sean S. Cunningham (1980)</dd>
+
+            <dt>Beetlejuice</dt>
+            <dd class="invisible">Directed by Tim Burton (1988)</dd>
+
+            <dt>Pet Sematary</dt>
+            <dd class="invisible">Directed by Mary Lambert (1989)</dd>
+
+            <dt>Ghostbusters</dt>
+            <dd class="invisible">Directed by Ivan Reitman (1984) </dd>
+        </dl>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+"use strict";
+
+
+    $('.invisible').css('visibility', 'hidden').toggleClass('.invisible', 'addOrRemove');
+    $('dt').click(function(){
+        $(this).css('background-color','orange');
+    });
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
