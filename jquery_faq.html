@@ -10,34 +10,34 @@
 
         <dl>
             <dt>Rocky Horror Picture Show</dt>
-            <dd class="invisible">Directed by Jim Sharman (1975)</dd>
+            <dd>Directed by Jim Sharman (1975)</dd>
 
             <dt>Halloween</dt>
-            <dd class="invisible">Directed by John Carpenter (1978)</dd>
+            <dd>Directed by John Carpenter (1978)</dd>
 
             <dt>Mars Attack</dt>
-            <dd class="invisible">Directed by Tim Burton (1996)</dd>
+            <dd class>Directed by Tim Burton (1996)</dd>
 
             <dt>The Exorcist</dt>
-            <dd class="invisible">Directed by William Friedkin (1973)</dd>
+            <dd>Directed by William Friedkin (1973)</dd>
 
             <dt>It</dt>
-            <dd class="invisible">Directed by Tommy Lee Wallace (1990)</dd>
+            <dd>Directed by Tommy Lee Wallace (1990)</dd>
 
             <dt>Hocus Pocus</dt>
-            <dd class="invisible">Directed by Kenny Ortega (1993)</dd>
+            <dd>Directed by Kenny Ortega (1993)</dd>
 
             <dt>Friday the 13th</dt>
-            <dd class="invisible">Directed by Sean S. Cunningham (1980)</dd>
+            <dd>Directed by Sean S. Cunningham (1980)</dd>
 
             <dt>Beetlejuice</dt>
-            <dd class="invisible">Directed by Tim Burton (1988)</dd>
+            <dd>Directed by Tim Burton (1988)</dd>
 
             <dt>Pet Sematary</dt>
-            <dd class="invisible">Directed by Mary Lambert (1989)</dd>
+            <dd>Directed by Mary Lambert (1989)</dd>
 
             <dt>Ghostbusters</dt>
-            <dd class="invisible">Directed by Ivan Reitman (1984) </dd>
+            <dd>Directed by Ivan Reitman (1984) </dd>
         </dl>
 
             <h3>Four Fun Facts About Ghostbusters:</h3>
@@ -70,18 +70,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
 "use strict";
-    $(document).ready(function() {
-        $('dd').click(function(event) {
-            event.preventDefault();
-            $('.invisible').toggleClass('.invisible');
-        });
-    });
-    // $('.invisible').css('visibility', 'hidden').toggleClass('.invisible', 'addOrRemove');
+// $('.invisible').css('visibility','hidden');
+$('dd').addClass('invisible');
+
+
+    // $(document).ready(function() {
+    //     $('dd').click(function(event) {
+    //         event.preventDefault();
+    //         $('dd').toggleClass('.invisible');
+    //     });
+    // });
+
     $('dt').click(function(){
         $(this).css('background-color','orange');
     });
     $('.ui-button').click(function(){
-        $('li').last().css('background-color','yellow');
+        $('ul').each(function(){
+           $(this).children().last().css   ('background-color','yellow')
+        });
 
         });
     $('h3').click(function(){
@@ -89,9 +95,8 @@
     });
 
     $('li').click(function(){
-        $(this).parent().first().css('color','blue');
+        $(this).parent().children().first().css('color','blue');
     });
-
 
 
 
