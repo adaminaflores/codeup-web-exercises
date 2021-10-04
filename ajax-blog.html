@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>My Blog</h1>
+
+    <div id="posts"></div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+
+<script>
+
+
+"use strict";
+    $.get("data/blog.json").done(function(data){
+        console.log(data);
+
+        for(var i = 0; i < data.length; i++){
+            var blogData = '<tr><br>' + '<td>' + data[i].title + '</td><br>'+ '<td>'+ data[i].content +'</td><br>' + '<td>'+ data[i].categories + '</td><br>' + '<td>' + data[i].date + '</td><br>'
+            console.log(blogData);
+            $('#posts').append(blogData);
+        }
+
+
+    });
+
+
+
+</script>
+</body>
+</html>
