@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MapBox Exercise</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+        #map {
+            width: 500px;
+            height: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+<body>
+
+<div id="map"></div>
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<script src="keys.js"></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+
+<script>
+"use strict";
+    mapboxgl.accessToken = mapboxApiKey;
+    console.log(mapboxApiKey);
+
+
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 15,
+            center: [-98.491666, 29.455668],
+            doubleCLickZoom: true,
+            logoPosition: 'top-right',
+        });
+
+
+
+        geocode("2720 McCollough Ave, San Antonio, TX, 78212", mapboxApiKey).then(function(results){
+            console.log(results);
+        });
+
+        var marker = new mapboxgl.Marker({color: 'red'})
+            .setLngLat([-98.491666, 29.455668])
+            .addTo(map);
+
+        var barbPopUp= new mapboxgl.Popup({closeOnClick: true})
+            .setHTML('<h2>BARBARO</h2>')
+            .addTo(map);
+        marker.setPopup(barbPopUp)
+
+
+
+        geocode("8474 Fredericksburg Rd #100, San Antonio, TX 78229", mapboxApiKey).then(function(results){
+            console.log(results);
+        });
+
+        var newMarker = new mapboxgl.Marker({color: 'orange'})
+                .setLngLat([-98.571903, 29.520163])
+                .addTo(map);
+
+        var indiPopUp= new mapboxgl.Popup({closeOnClick: true})
+            .setHTML('<h2>INDIA PALACE</h2>')
+            .addTo(map);
+
+        newMarker.setPopup(indiPopUp)
+
+
+        geocode("14395 Blanco Rd, San Antonio, TX 78216", mapboxApiKey).then(function(results){
+           console.log(results)
+        });
+
+
+        var lastMarker= new mapboxgl.Marker({color: 'blue'})
+            .setLngLat([-98.51548, 29.57298])
+            .addTo(map);
+
+        var itoPopUp= new mapboxgl.Popup({closeOnClick: true})
+            .setHTML('<h2>ITO RAMEN</h2>')
+            .addTo(map);
+
+        lastMarker.setPopup(itoPopUp)
+
+
+</script>
+
+
+</body>
+</html>
