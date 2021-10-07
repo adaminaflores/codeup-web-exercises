@@ -41,58 +41,87 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 15,
+            zoom: 10,
             center: [-98.491666, 29.455668],
             doubleCLickZoom: true,
             logoPosition: 'top-right',
+
         });
 
 
 
-        geocode("2720 McCollough Ave, San Antonio, TX, 78212", mapboxApiKey).then(function(results){
-            console.log(results);
+var features = [
+    {name:'Barbaro', address:'2720 McCollough Ave, San Antonio, TX, 78212'},
+    {name:'India Palace', address:'8474 Fredericksburg Rd #100, San Antonio, TX 78229'},
+    {name:'Ito Ramen',address:'14395 Blanco Rd, San Antonio, TX 78216'}
+];
+
+
+        features.forEach(function(results){
+            var marker = new mapboxgl.Marker({color: 'red'})
+                .setLngLat(results)
+                .setPopup(popUp)
+                .addTo(map);
+
+
+
+
+
+
+
         });
 
+
+        // geocode("2720 McCollough Ave, San Antonio, TX, 78212", mapboxApiKey).then(function(results){
+        //     console.log(results);
+        // });
+        //
         var marker = new mapboxgl.Marker({color: 'red'})
             .setLngLat([-98.491666, 29.455668])
             .addTo(map);
 
-        var barbPopUp= new mapboxgl.Popup({closeOnClick: true})
-            .setHTML('<h2>BARBARO</h2>')
-            .addTo(map);
-        marker.setPopup(barbPopUp)
+        // var barbPopUp= new mapboxgl.Popup({closeOnClick: true})
+        //     .setHTML('<h2>BARBARO</h2>')
+        //     .addTo(map);
+        // marker.setPopup(barbPopUp)
+        //
+        //
+        //
+        // geocode("8474 Fredericksburg Rd #100, San Antonio, TX 78229", mapboxApiKey).then(function(results){
+        //     console.log(results);
+        // });
+        //
+        // var newMarker = new mapboxgl.Marker({color: 'orange'})
+        //         .setLngLat([-98.571903, 29.520163])
+        //         .addTo(map);
+        //
+        // var indiPopUp= new mapboxgl.Popup({closeOnClick: true})
+        //     .setHTML('<h2>INDIA PALACE</h2>')
+        //     .addTo(map);
+        //
+        // newMarker.setPopup(indiPopUp)
+        //
+        //
+        // geocode("14395 Blanco Rd, San Antonio, TX 78216", mapboxApiKey).then(function(results){
+        //    console.log(results)
+        // });
+        //
+        //
+        // var lastMarker= new mapboxgl.Marker({color: 'blue'})
+        //     .setLngLat([-98.51548, 29.57298])
+        //     .addTo(map);
+        //
+        // var itoPopUp= new mapboxgl.Popup({closeOnClick: true})
+        //     .setHTML('<h2>ITO RAMEN</h2>')
+        //     .addTo(map);
+        //
+        // lastMarker.setPopup(itoPopUp)
 
 
 
-        geocode("8474 Fredericksburg Rd #100, San Antonio, TX 78229", mapboxApiKey).then(function(results){
-            console.log(results);
-        });
-
-        var newMarker = new mapboxgl.Marker({color: 'orange'})
-                .setLngLat([-98.571903, 29.520163])
-                .addTo(map);
-
-        var indiPopUp= new mapboxgl.Popup({closeOnClick: true})
-            .setHTML('<h2>INDIA PALACE</h2>')
-            .addTo(map);
-
-        newMarker.setPopup(indiPopUp)
 
 
-        geocode("14395 Blanco Rd, San Antonio, TX 78216", mapboxApiKey).then(function(results){
-           console.log(results)
-        });
 
-
-        var lastMarker= new mapboxgl.Marker({color: 'blue'})
-            .setLngLat([-98.51548, 29.57298])
-            .addTo(map);
-
-        var itoPopUp= new mapboxgl.Popup({closeOnClick: true})
-            .setHTML('<h2>ITO RAMEN</h2>')
-            .addTo(map);
-
-        lastMarker.setPopup(itoPopUp)
 
 
 </script>
