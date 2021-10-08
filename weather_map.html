@@ -3,85 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather Map Project</title>
+
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<!--Styling for Map Box-->
+
+    <style>
+        #map {
+            width: 800px;
+            height: 500px;
+            margin: auto;
+        }
+    </style>
+
 </head>
 <body>
 
-<!--CSS/HTML-->
+        <nav class="navbar navbar-light bg-light d-flex justify-content-start flex-nowrap">
+            <a class="navbar-brand" href="">Weather App</a>
+            <form class="form-inline" style="margin-left: auto">
+
+                <input class="form-control mr-sm-2" type="text" id="your-weather" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="your-location">Search</button>
+            </form>
+        </nav>
+        <br>
 
 
-<div class="container d-flex">
+        <div class="container d-flex justify-content-center" ></div>
+
+        <br>
 
 
-</div>
+        <div id="map"></div>
 
 
 
 
 
-
-
-<!--jQuery/ Bootstrap/ Weather Map API scripts-->
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 <script src="keys.js"></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
 
 
 
 
-<!--Weather Map API-->
 <script>
+"use strict";
+            $(document).ready(function(data){
+                $('#your-weather').click(function(event) {
+                    event.preventDefault();
+                    geocode($('#your-location').val(), mapboxApiKey).then(function (results) {
 
-    $(document).ready(function(data){
-        $.get('https://api.openweathermap.org/data/2.5/forecast', {
-            APPID: openWeatherKey,
-            q:     "San Antonio, US",
-            lat: 29.42,
-            lon: -98.49,
-            units: "imperial",
+                        mapboxgl.accessToken = mapboxApiKey;
+                        var map = new mapboxgl.Map({
+                            container: 'map',
+                            style: 'mapbox://styles/mapbox/streets-v9',
+                            zoom: 10,
+                            center: [results[0], results[1]]
+
+                        })
+
+                        var updateMarker = new mapboxgl.Marker( {
+                            color: 'rebeccapurple',
+                            draggable: true
+                        })
+
+                            .setLngLat(results)
+                            .addTo(map)
+                            .on('dragend', () => {
+                                var results = updateMarker.getLngLat();
+                                var arr = Object.values(results);
+
+
+                                $.get('https://api.openweathermap.org/data/2.5/forecast', {
+                                    APPID: openWeatherKey,
+                                    lat: arr[1],
+                                    lon: arr[0],
+                                    units: "imperial",
+                                })
+
+
+                                    .done(function (data) {
+                                        console.log(data.list);
+
+                                        // var yourLocation = $('#your-location').val();
+
+
+                                        <!--Five Day For Loop / Variables for Data-->
+
+                                        for (var i = 0; i < data.list.length; i += 8) {
+                                            console.log(data.list[i]);
+
+                                            var temp = data.list[i].main.temp;
+                                            var date = new Date(data.list[i].dt * 1000).toLocaleDateString('en-US', {
+                                                weekday: "long", month: "long", day: "numeric", year: "numeric"
+                                            });
+                                            var description = data.list[i].weather[0].description;
+                                            var humidity = data.list[i].main.humidity;
+                                            var imgIcon = '<img src="https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png"/>'
+
+
+                                            var html = '<div class="card border" style="width: 10rem; height: 20rem">'
+                                                + '<h6 class="card-header text-center" style="font-size: 12px; font-weight: bold">' + date + '</h6>'
+                                                + '<div class="card-body">'
+                                                + '<h4 class="card-title text-center" style="font-weight: bolder">' + temp + '</h4>'
+                                                + '<div class="text-center">' + imgIcon + '</div><hr>'
+                                                + '<p class="card-text text-center" style="font-size: 12px">' + "Description: " + description + '</p><hr>'
+                                                + '<p class="card-text text-center" style="font-size: 12px">' + "Humidity: " + humidity + '</p><hr>'
+                                                + '</div>'
+                                                + '</div>'
+
+
+                                            $('.container').append(html);
+
+
+                                        }
+
+                    })
+
+                })
+            })
         })
-
-            .done(function(data) {
-            console.log(data.list);
-
-
-
-
-            for(var i = 0; i < data.list.length; i += 8) {
-                console.log(data.list[i]);
-                var temp = data.list[i].main.temp;
-                var date = new Date(data.list[i].dt * 1000).toLocaleDateString('en-US');
-                var description = data.list[i].weather[0].description;
-                var humidity = data.list[i].main.humidity;
-
-                var html = '<div class="card border" style="width: 10rem; height: 20rem">'
-                    + '<h6 class="card-header text-center">' + date + '</h6>'
-                    + '<div class="card-body">'
-                    + '<h4 class="card-title text-center" style="font-weight: bolder">' + temp + '</h4><hr>'
-                    +'<p class="card-text">'+ "Description: " + description + '</p><hr>'
-                    +'<p class="card-text">'+ "Humidity: " + humidity +'</p><hr>'
-
-
-                    +'</div>'
-                    + '</div>'
-
-
-
-                $('.container').append(html);
-            }
-    });
-
-});
-
-
-
-
+})
 
 </script>
-
-
-
-
-
 </body>
 </html>
