@@ -123,6 +123,12 @@ console.log(hasBuffet);
 //TODO: Each one of your restaurant arrays is unique, but, in that array, identify something to filter by - it could be as simple as "well, let me filter out all of the restaurants with names shorter than 8 characters" or get as complicated as you'd like!
 // TODO: Once you've figured our what you want to filter, go ahead and write the necessary code to achieve what you wanted - remember to practice with .filter() and our ES6 verbiage!
 
+let hasO = myRestaurants.filter(function(restaurant){
+    return restaurant.name.includes('o')
+})
+console.log(hasO);
+
+
 //~ * Reduce * ~
 
 //Reduce is an interesting animal in and of itself: it's a way to reduce a collection down to, typically, a single value of some kind:
