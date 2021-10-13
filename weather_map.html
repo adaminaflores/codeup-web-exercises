@@ -4,37 +4,58 @@
     <meta charset="UTF-8">
     <title>Weather Map Project</title>
 
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-<!--Styling for Map Box-->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!--Styling for Map Box/ Weather App-->
 
     <style>
-        #map {
+        #weatherMap {
             width: 800px;
             height: 500px;
             margin: auto;
         }
+        .navbar{
+            color: midnightblue;
+            background-image: url("img/487.jpg");
+
+            height: 100px;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 50px;
+        }
+
+        .card-header{
+            background-image: url("img/487.jpg");
+            font-family: 'Bebas Neue', cursive;
+            color: midnightblue ;
+
+        }
+
+
     </style>
 
 </head>
-<body>
-
-        <nav class="navbar navbar-light bg-light d-flex justify-content-start flex-nowrap">
-            <a class="navbar-brand" href="">Weather App</a>
-            <form class="form-inline" style="margin-left: auto">
-
-                <input class="form-control mr-sm-2" type="text" id="your-weather" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="your-location">Search</button>
-            </form>
-        </nav>
-        <br>
+<body style="background-color: #c6d7f6">
 
 
-        <div class="container d-flex justify-content-center" ></div>
+<nav class="navbar  d-flex justify-content-start flex-nowrap">
+    <a class="navbar " href="">Weather App</a>
+    <form class="form-inline" style="margin-left: auto">
 
-        <br>
+        <input class="form-control mr-sm-2" type="text" id="updateWeather" placeholder="Search">
+        <button class="btn btn-outline-primary my-2 my-sm-0" style= "color: midnightblue" type="submit" id="updateLocation">Search</button>
+    </form>
+</nav>
+<br>
 
 
-        <div id="map"></div>
+<div class="container d-flex justify-content-center" ></div>
+
+<br>
+
+
+<div id="weatherMap"></div>
 
 
 
@@ -52,83 +73,82 @@
 
 
 <script>
-"use strict";
-            $(document).ready(function(data){
-                $('#your-weather').click(function(event) {
-                    event.preventDefault();
-                    geocode($('#your-location').val(), mapboxApiKey).then(function (results) {
-
-                        mapboxgl.accessToken = mapboxApiKey;
-                        var map = new mapboxgl.Map({
-                            container: 'map',
-                            style: 'mapbox://styles/mapbox/streets-v9',
-                            zoom: 10,
-                            center: [results[0], results[1]]
-
-                        })
-
-                        var updateMarker = new mapboxgl.Marker( {
-                            color: 'rebeccapurple',
-                            draggable: true
-                        })
-
-                            .setLngLat(results)
-                            .addTo(map)
-                            .on('dragend', () => {
-                                var results = updateMarker.getLngLat();
-                                var arr = Object.values(results);
-
-
-                                $.get('https://api.openweathermap.org/data/2.5/forecast', {
-                                    APPID: openWeatherKey,
-                                    lat: arr[1],
-                                    lon: arr[0],
-                                    units: "imperial",
-                                })
-
-
-                                    .done(function (data) {
-                                        console.log(data.list);
-
-                                        // var yourLocation = $('#your-location').val();
-
-
-                                        <!--Five Day For Loop / Variables for Data-->
-
-                                        for (var i = 0; i < data.list.length; i += 8) {
-                                            console.log(data.list[i]);
-
-                                            var temp = data.list[i].main.temp;
-                                            var date = new Date(data.list[i].dt * 1000).toLocaleDateString('en-US', {
-                                                weekday: "long", month: "long", day: "numeric", year: "numeric"
-                                            });
-                                            var description = data.list[i].weather[0].description;
-                                            var humidity = data.list[i].main.humidity;
-                                            var imgIcon = '<img src="https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png"/>'
-
-
-                                            var html = '<div class="card border" style="width: 10rem; height: 20rem">'
-                                                + '<h6 class="card-header text-center" style="font-size: 12px; font-weight: bold">' + date + '</h6>'
-                                                + '<div class="card-body">'
-                                                + '<h4 class="card-title text-center" style="font-weight: bolder">' + temp + '</h4>'
-                                                + '<div class="text-center">' + imgIcon + '</div><hr>'
-                                                + '<p class="card-text text-center" style="font-size: 12px">' + "Description: " + description + '</p><hr>'
-                                                + '<p class="card-text text-center" style="font-size: 12px">' + "Humidity: " + humidity + '</p><hr>'
-                                                + '</div>'
-                                                + '</div>'
-
-
-                                            $('.container').append(html);
-
-
-                                        }
-
-                    })
-
-                })
-            })
+    "use strict";
+    $(document).ready(function(){
+        $.get('https://api.openweathermap.org/data/2.5/forecast', {
+            APPID: openWeatherKey,
+            lat: 29.42,
+            lon: -98.49,
+            units: "imperial",
         })
-})
+
+        // $('#updateLocation').click(function(event) {
+        //     event.preventDefault();
+        //     geocode($('#updateWeather').val(), mapboxApiKey).then(function (results) {
+        //
+        //         mapboxgl.accessToken = mapboxApiKey;
+        //         var weatherMap = new mapboxgl.Map({
+        //             container: 'weatherMap',
+        //             style: 'mapbox://styles/mapbox/streets-v9',
+        //             zoom: 10,
+        //             center: [results[0], results[1]]
+        // //
+        //         })
+        //
+        //         var updateMarker = new mapboxgl.Marker( {
+        //             color: 'rebeccapurple',
+        //             draggable: true
+        //         })
+        //
+        //             .setLngLat(results)
+        //             .addTo(map)
+        //             .on('dragend', () => {
+        //                 var results = updateMarker.getLngLat(results);
+        //                 var arr = Object.values(results);
+        //
+        //
+        //             })
+
+
+                    .done(function (data) {
+                        console.log(data.list);
+
+                        // var yourLocation = $('#your-location').val();
+
+
+                        <!--Five Day For Loop / Variables for Data-->
+
+                        for (var i = 0; i < data.list.length; i += 8) {
+                            console.log(data.list[i]);
+
+                            var temp = data.list[i].main.temp;
+                            var date = new Date(data.list[i].dt * 1000).toLocaleDateString('en-US', {
+                                weekday: "long", month: "long", day: "numeric", year: "numeric"
+                            });
+                            var description = data.list[i].weather[0].description;
+                            var humidity = data.list[i].main.humidity;
+                            var imgIcon = '<img src="https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png"/>'
+
+
+                            var html = '<div class="card border" style="width: 10rem; height: 20rem; border-color: lightblue">'
+                                + '<h6 class="card-header text-center" style="font-size: 15px; font-weight: bold">' + date + '</h6>'
+                                + '<div class="card-body" style="background-color: lightblue">'
+                                + '<h4 class="card-title text-center" style="font-weight: bolder; color: midnightblue">' + temp + '</h4>'
+                                + '<div class="text-center">' + imgIcon + '</div><hr>'
+                                + '<p class="card-text text-center" style="font-size: 12px; color: midnightblue">' + "Description: " +'<br>'+ description + '</p><hr>'
+                                + '<p class="card-text text-center" style="font-size: 12px; color: midnightblue">' + "Humidity: " + '<br>' + humidity +'</p>'
+                                + '</div>'
+                                + '</div>'
+
+
+                            $('.container').append(html);
+                        }
+                    })
+            })
+        // })
+    // })
+
+
 
 </script>
 </body>
