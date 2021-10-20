@@ -97,7 +97,7 @@ users.forEach(({name ,email, languages}) => developers.push(`${name}'s email is 
   // TODO: rewrite the assignment below to use template strings
 
 
-
+developers.push(`${name}'s email is ${email}. ${name} knows ${languages.join(', ')}.`);
 
 
 
@@ -110,4 +110,10 @@ developers.forEach(function (developer) {
   // TODO: rewrite the assignment below to use template strings
   list += '<li>' + developer + '</li>';
 });
+
+for(let developer of developers){
+  list += `<li> ${developer}</li>`
+}
+
 list += '</ul>';
+  $('#example').html(list)
