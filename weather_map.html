@@ -12,7 +12,7 @@
 
     <style>
         #weatherMap {
-            width: 800px;
+            width: 860px;
             height: 500px;
             margin: auto;
         }
@@ -74,7 +74,7 @@
 
 <script>
     "use strict";
-    $(document).ready(function(){
+    $(document).ready(function() {
         $.get('https://api.openweathermap.org/data/2.5/forecast', {
             APPID: openWeatherKey,
             lat: 29.42,
@@ -82,71 +82,137 @@
             units: "imperial",
         })
 
-        // $('#updateLocation').click(function(event) {
-        //     event.preventDefault();
-        //     geocode($('#updateWeather').val(), mapboxApiKey).then(function (results) {
-        //
-        //         mapboxgl.accessToken = mapboxApiKey;
-        //         var weatherMap = new mapboxgl.Map({
-        //             container: 'weatherMap',
-        //             style: 'mapbox://styles/mapbox/streets-v9',
-        //             zoom: 10,
-        //             center: [results[0], results[1]]
-        // //
-        //         })
-        //
-        //         var updateMarker = new mapboxgl.Marker( {
-        //             color: 'rebeccapurple',
-        //             draggable: true
-        //         })
-        //
-        //             .setLngLat(results)
-        //             .addTo(map)
-        //             .on('dragend', () => {
-        //                 var results = updateMarker.getLngLat(results);
-        //                 var arr = Object.values(results);
-        //
-        //
-        //             })
+            .done(function (data) {
+                console.log(data.list);
+
+                <!--Five Day For Loop / Variables for Data-->
+                for (var i = 0; i < data.list.length; i += 8) {
+                    console.log(data.list[i]);
+
+                    var temp = data.list[i].main.temp;
+                    var date = new Date(data.list[i].dt * 1000).toLocaleDateString('en-US', {
+                        weekday: "long", month: "long", day: "numeric", year: "numeric"
+                    });
+                    var description = data.list[i].weather[0].description;
+                    var humidity = data.list[i].main.humidity;
+                    var imgIcon = '<img src="https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png"/>'
 
 
-                    .done(function (data) {
-                        console.log(data.list);
-
-                        // var yourLocation = $('#your-location').val();
-
-
-                        <!--Five Day For Loop / Variables for Data-->
-
-                        for (var i = 0; i < data.list.length; i += 8) {
-                            console.log(data.list[i]);
-
-                            var temp = data.list[i].main.temp;
-                            var date = new Date(data.list[i].dt * 1000).toLocaleDateString('en-US', {
-                                weekday: "long", month: "long", day: "numeric", year: "numeric"
-                            });
-                            var description = data.list[i].weather[0].description;
-                            var humidity = data.list[i].main.humidity;
-                            var imgIcon = '<img src="https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png"/>'
+                    var html = '<div class="card">'
+                        + '<h6 class="card-header text-center" style="font-size: 15px; font-weight: bold">' + date + '</h6>'
+                        + '<div class="card-body" style="background-color: lightblue">'
+                        + '<h4 class="card-title text-center" style="font-weight: bolder; color: midnightblue">' + temp + '</h4>'
+                        + '<div class="text-center">' + imgIcon + '</div><hr>'
+                        + '<p class="card-text text-center" style="font-size: 12px; color: midnightblue">' + "Description: " + '<br>' + description + '</p><hr>'
+                        + '<p class="card-text text-center" style="font-size: 12px; color: midnightblue">' + "Humidity: " + '<br>' + humidity + '</p>'
+                        + '</div>'
+                        + '</div>'
 
 
-                            var html = '<div class="card border" style="width: 10rem; height: 20rem; border-color: lightblue">'
-                                + '<h6 class="card-header text-center" style="font-size: 15px; font-weight: bold">' + date + '</h6>'
-                                + '<div class="card-body" style="background-color: lightblue">'
-                                + '<h4 class="card-title text-center" style="font-weight: bolder; color: midnightblue">' + temp + '</h4>'
-                                + '<div class="text-center">' + imgIcon + '</div><hr>'
-                                + '<p class="card-text text-center" style="font-size: 12px; color: midnightblue">' + "Description: " +'<br>'+ description + '</p><hr>'
-                                + '<p class="card-text text-center" style="font-size: 12px; color: midnightblue">' + "Humidity: " + '<br>' + humidity +'</p>'
-                                + '</div>'
-                                + '</div>'
+                    $('.container').append(html);
 
 
-                            $('.container').append(html);
-                        }
+                }
+
+                mapboxgl.accessToken = mapboxApiKey;
+                var weatherMap = new mapboxgl.Map({
+                    container: 'weatherMap',
+                    style: 'mapbox://styles/mapbox/streets-v9',
+                    zoom: 10,
+                    center: [-98.4861, 29.4252]
+
+                })
+
+
+                var updateMarker = new mapboxgl.Marker({
+                    color: 'lightblue',
+                    draggable: true
+                })
+
+                    .setLngLat([-98.4861, 29.4252])
+                    .addTo(weatherMap)
+                    .on('dragend', () => {
+                        var results = updateMarker.getLngLat();
+                        var arr = Object.values(results);
+
+
+                        // })
+
+                        $.get('https://api.openweathermap.org/data/2.5/forecast', {
+                            APPID: openWeatherKey,
+                            lat: arr[1],
+                            lon: arr[0],
+                            units: "imperial",
+                        })
+
+                            .done(function (data) {
+                                geocode($('#updateWeather').val(), mapboxApiKey).then(function (results) {
+                                    $('.container').append(html);
+
+                                })
+                            })
+
+
+                        geocode($('#updateWeather').val(), mapboxApiKey).then(function (results) {
+                            weatherMap.flyTo({
+                                center: results,
+                                essential: true,
+                                speed: 0.5,
+                                zoom: 9,
+                                bearing: 0
+                            })
+
+                            $.get('https://api.openweathermap.org/data/2.5/forecast', {
+                                APPID: openWeatherKey,
+                                lat: results[1],
+                                lon: results[0],
+                                units: "imperial",
+                            })
+                                .done(function (data) {
+                                    console.log(data.list);
+
+                                    <!--Five Day For Loop / Variables for Data-->
+                                    for (var i = 0; i < data.list.length; i += 8) {
+                                        console.log(data.list[i]);
+
+                                        var temp = data.list[i].main.temp;
+                                        var date = new Date(data.list[i].dt * 1000).toLocaleDateString('en-US', {
+                                            weekday: "long", month: "long", day: "numeric", year: "numeric"
+                                        });
+                                        var description = data.list[i].weather[0].description;
+                                        var humidity = data.list[i].main.humidity;
+                                        var imgIcon = '<img src="https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png"/>'
+
+
+                                        var html = '<div class="card">'
+                                            + '<h6 class="card-header text-center" style="font-size: 15px; font-weight: bold">' + date + '</h6>'
+                                            + '<div class="card-body" style="background-color: lightblue">'
+                                            + '<h4 class="card-title text-center" style="font-weight: bolder; color: midnightblue">' + temp + '</h4>'
+                                            + '<div class="text-center">' + imgIcon + '</div><hr>'
+                                            + '<p class="card-text text-center" style="font-size: 12px; color: midnightblue">' + "Description: " + '<br>' + description + '</p><hr>'
+                                            + '<p class="card-text text-center" style="font-size: 12px; color: midnightblue">' + "Humidity: " + '<br>' + humidity + '</p>'
+                                            + '</div>'
+                                            + '</div>'
+
+
+                                        $('.container').append(html);
+
+
+                                    }
+
+
+                                })
+
+
+                        })
                     })
+                $('#refresh').click(function (event) {
+                    event.preventDefault();
+                    window.location.reload();
+
+                })
             })
-        // })
-    // })
+    })
 
 
 
