@@ -54,8 +54,18 @@ fetch('https://pokeapi.co/api/v2/pokemon')
 // Let's try working with the Star Wars API!
 
 // TODO: Using Promises, make a fetch request to the Star Wars API
+fetch('https://swapi.dev/api/films')
+
 
 // TODO: Use Promise chaining to console log the json response
+    .then((response)=>{
+      return response.json();
+    }).then((starWarsFilmData)=>{
+        console.log(starWarsFilmData.results);
+        starWarsFilmData.results.forEach((film)=>{console.log(film.title)})
+
+
+})
 
 // TODO: chain another method that iterates through the results array and console logs the names
 
